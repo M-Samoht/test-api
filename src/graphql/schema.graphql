@@ -1,0 +1,84 @@
+type Query {
+  users(page: Int): UsersResponse!
+  user(_id: String!): User!
+  movies(query: String, page: Int): MovieResponse!
+  movie(imdbID: String!): MovieFull!
+  top(id: String): MovieFull!
+}
+
+type Mutation {
+  user(username: String! email: String, birthday: String!): LoggedIn!
+  login(username: String!, password: String!): LoggedIn!
+  register(username: String!, password: String!, email: String!): LoggedIn!
+  toggleLike(imdbID: String!): User!
+}
+
+type MovieResponse {
+  movies: [Movie]!
+  totalResults: Int!
+}
+
+type UsersResponse {
+  users: [User]!
+  totalResults: Int!
+}
+
+type LoggedIn {
+  user: User!
+  token: String!
+}
+
+type User {
+  _id: String!
+  username: String!
+  email: String!
+  birthday: String
+  lastLogin: String
+  createdAt: String
+  updatedAt: String
+  likes: [Movie]!
+}
+
+type Movie {
+  Title: String!
+  Year: String!
+  imdbID: String!
+  Type: String!
+  Poster: String
+  LikesCount: Int
+  likes: [User]
+}
+
+type MovieFull {
+  Title: String!
+  Year: String!
+  Rated: String!
+  Released: String!
+  Runtime: String!
+  Genre: String!
+  Director: String
+  Writer: String
+  Actors: String
+  Plot: String
+  Language: String
+  Country: String
+  Awards: String
+  Poster: String
+  Ratings: [Rating]
+  Metascore: String
+  imdbRating: String
+  imdbVotes: String
+  imdbID: String
+  Type: String
+  DVD: String
+  BoxOffice: String
+  Production: String
+  Website: String
+  LikesCount: Int
+  likes: [User]
+}
+
+type Rating {
+  Source: String!
+  Value: String!
+}

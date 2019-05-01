@@ -1,0 +1,4 @@
+/node_modules
+/.tmp
+startmongo.sh
+yarn-error.log
